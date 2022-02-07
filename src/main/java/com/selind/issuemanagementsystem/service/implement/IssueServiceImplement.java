@@ -1,7 +1,9 @@
 package com.selind.issuemanagementsystem.service.implement;
 
 import com.selind.issuemanagementsystem.dto.IssueDto;
+import com.selind.issuemanagementsystem.dto.ProjectDto;
 import com.selind.issuemanagementsystem.entity.Issue;
+import com.selind.issuemanagementsystem.entity.Project;
 import com.selind.issuemanagementsystem.repository.IssueRepository;
 import com.selind.issuemanagementsystem.service.IssueService;
 import com.selind.issuemanagementsystem.util.TPage;
@@ -38,7 +40,8 @@ public class IssueServiceImplement implements IssueService {
 
     @Override
     public IssueDto getById(Long id) {
-        return null;
+        Issue p= issueRepository.getById(id);
+        return modelMapper.map(p, IssueDto.class);
     }
 
     @Override
@@ -51,7 +54,13 @@ public class IssueServiceImplement implements IssueService {
     }
 
     @Override
-    public Boolean delete(IssueDto issue) {
+    public Boolean delete(Long issueId) {
+        issueRepository.deleteById(issueId);
+        return true;
+    }
+
+    @Override
+    public IssueDto update(Long id, IssueDto project) {
         return null;
     }
 }

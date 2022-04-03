@@ -4,11 +4,13 @@ import com.selind.issuemanagementsystem.dto.ProjectDto;
 import com.selind.issuemanagementsystem.entity.Project;
 import com.selind.issuemanagementsystem.repository.ProjectRepository;
 import com.selind.issuemanagementsystem.service.ProjectService;
+import com.selind.issuemanagementsystem.util.TPage;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -41,18 +43,21 @@ public class ProjectServiceImplement implements ProjectService {
     }
 
     @Override
-    public Project getByProjectCode(String projectCode) {
+    public ProjectDto getByProjectCode(String projectCode) {
         return null;
     }
 
     @Override
-    public List<Project> getByProjectCodeContains(String projectCode) {
+    public List<ProjectDto> getByProjectCodeContains(String projectCode) {
         return null;
     }
 
     @Override
-    public Page<Project> getAllPageable(Pageable pageable) {
-        return projectRepository.findAll(pageable);
+    public TPage<ProjectDto> getAllPageable(Pageable pageable) {
+        Page<Project> data = projectRepository.findAll(pageable);
+        TPage<ProjectDto> response = new TPage<>();
+        response.setStat(data, Arrays.asList(modelMapper.map(data.getContent(), ProjectDto[].class)));
+        return response;
     }
 
     @Override

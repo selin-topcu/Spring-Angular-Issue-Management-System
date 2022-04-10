@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectComponent } from './project.component';
 import {ProjectRoutingModule} from "./project.routing.module";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {ProjectService} from "../../services/shared/project.service";
 // import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
@@ -12,6 +13,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
     ProjectRoutingModule
 //     SharedModule
   ],
+  providers:[ProjectService],
   declarations: [ProjectComponent]
 })
 export class ProjectModule { }

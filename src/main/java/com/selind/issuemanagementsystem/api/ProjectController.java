@@ -20,6 +20,7 @@ import javax.validation.Valid;
 @RequestMapping(ApiPaths.ProjectController.CTRL)
 @Api(value=ApiPaths.ProjectController.CTRL,description = "Project API's")
 @Slf4j //loglama
+@CrossOrigin //pagination işlemi yaparrken cross hatası aldığında verildi
 public class ProjectController {
     //
     private final ProjectServiceImplement projectServiceImplement;
